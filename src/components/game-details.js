@@ -37,9 +37,10 @@ function requirements(game) {
 function gallery(game) {
   if (!game.screenshots?.length) {
     // Decorative skeleton tiles: aria-hidden so the sentence below is what
-    // assistive tech reads, not three empty boxes.
+    // assistive tech reads, not three empty boxes. Numbered to match the three
+    // commented screenshot slots in the data files, so you can see which is which.
     return `<ul class="shots shots--empty" aria-hidden="true">
-        ${[0, 1, 2].map(() => `<li><span class="shot-ph"></span></li>`).join('')}
+        ${[1, 2, 3].map((n) => `<li><span class="shot-ph">Shot ${n}</span></li>`).join('')}
       </ul>
       <p class="muted">No screenshots have been supplied by the developer or press kit yet.</p>`;
   }

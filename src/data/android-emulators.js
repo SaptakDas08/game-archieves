@@ -22,7 +22,11 @@ const UNSPEC = 'Not specified by developer';
     genre: 'Genre',
     shortDescription: 'One or two factual lines.',
     coverImage: null,                   // './images/games/your-game.webp'
-    screenshots: [],                    // [{ url: './images/games/shot-1.webp', alt: '…' }]
+    screenshots: [                      // three slots — fill the ones you want, delete the rest
+      // { url: './images/games/your-game-1.webp', alt: 'What shot 1 shows' },
+      // { url: './images/games/your-game-2.webp', alt: 'What shot 2 shows' },
+      // { url: './images/games/your-game-3.webp', alt: 'What shot 3 shows' },
+    ],
     developer: UNSPEC,
     publisher: UNSPEC,
     releaseDate: UNSPEC,

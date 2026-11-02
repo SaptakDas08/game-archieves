@@ -77,6 +77,9 @@ the invite code and the Buy Me a Coffee name, then delete the `<!-- EDIT ME …`
 Create `public/images/games/`, put artwork there, and set
 `coverImage: './images/games/your-game.webp'` and
 `screenshots: [{ url: './images/games/shot-1.webp', alt: 'Descriptive alt text' }]`.
+The `TEMPLATE` comment has three numbered screenshot slots ready to uncomment — keep the ones
+you use and delete the rest. Until a game has any, its detail dialog shows three dashed
+`Shot 1 / 2 / 3` tiles in the same positions, so you can see which slot is which.
 Keep the paths relative (`./`) so they still resolve when the site is hosted under a sub-path.
 Leave `coverImage: null` to get the built-in placeholder tile. Images are lazy-loaded and
 cropped with `object-fit: cover`. Only use artwork you are licensed to reuse (developer
