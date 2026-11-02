@@ -45,7 +45,12 @@ function requirements(game) {
 
 function gallery(game) {
   if (!game.screenshots?.length) {
-    return `<p class="muted">No screenshots have been supplied by the developer or press kit yet.</p>`;
+    // Decorative skeleton tiles: aria-hidden so the sentence below is what
+    // assistive tech reads, not three empty boxes.
+    return `<ul class="shots shots--empty" aria-hidden="true">
+        ${[0, 1, 2].map(() => `<li><span class="shot-ph"></span></li>`).join('')}
+      </ul>
+      <p class="muted">No screenshots have been supplied by the developer or press kit yet.</p>`;
   }
   return `<ul class="shots">${game.screenshots
     .map(
