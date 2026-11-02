@@ -1,15 +1,6 @@
 import { esc } from './chrome.js';
 import { platformLabel, statusBadge } from './game-card.js';
 
-const LINK_KIND_LABEL = {
-  'official-store': 'Official store',
-  'developer-website': 'Developer website',
-  'authorized-download': 'Authorized direct download',
-  'open-source': 'Open-source project',
-  'homebrew-source': 'Public-domain / homebrew source',
-  compatibility: 'Compatibility information',
-};
-
 function rows(pairs) {
   return `<dl class="spec-list">${pairs
     .filter(([, value]) => value)
@@ -62,21 +53,14 @@ function gallery(game) {
     .join('')}</ul>`;
 }
 
-function sources(game) {
-  if (!game.sourceLinks?.length) {
-    return `<p class="notice notice--warn">Source not verified &mdash; no download or store action is shown.</p>`;
+function originalSource(game) {
+  if (!game.originalSourceUrl) {
+    return `<p class="notice notice--warn">Source not verified &mdash; no store or download action is shown.</p>`;
   }
-  return `<ul class="source-links">${game.sourceLinks
-    .map(
-      (link) => `<li>
-        <a class="btn btn-ghost" href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">
-          ${esc(link.label || LINK_KIND_LABEL[link.kind] || 'Source')}
-          <span class="sr-only"> (opens in a new tab)</span>
-        </a>
-        <span class="muted source-kind">${esc(LINK_KIND_LABEL[link.kind] || 'Source')}</span>
-      </li>`,
-    )
-    .join('')}</ul>`;
+  return `<a class="btn btn-ghost" href="${esc(game.originalSourceUrl)}"
+      target="_blank" rel="noopener noreferrer">
+      Open on ${esc(game.originalSource)}<span class="sr-only"> (opens in a new tab)</span>
+    </a>`;
 }
 
 export function detailsMarkup(game) {
@@ -104,7 +88,6 @@ export function detailsMarkup(game) {
         ['Developer', game.developer],
         ['Publisher', game.publisher],
         ['Release', game.releaseDate],
-        ['Price model', game.priceModel],
         ['Platforms', platformLabel(game)],
       ])}
     </section>
@@ -138,9 +121,12 @@ export function detailsMarkup(game) {
       <p class="muted small">Image source: ${esc(game.imageSource)}</p>
     </section>
 
-    <section><h3>Legal sources</h3>
-      ${sources(game)}
-      <p class="notice">${esc(game.licenceOrPermissionNote)}</p>
+    <section><h3>Original source</h3>
+      ${rows([
+        ['Price', game.price],
+        ['Available from', game.originalSource],
+      ])}
+      ${originalSource(game)}
       <p class="muted small">Last verified: ${esc(game.lastVerified || 'not verified')}</p>
     </section>`;
 }

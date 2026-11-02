@@ -11,24 +11,24 @@ assert.equal(pcGames.length, 10, 'Gaming Computers must have 10 slots');
 assert.equal(new Set([...androidGames, ...pcGames].map((g) => g.slug)).size, 20, 'slugs unique');
 assert.equal(new Set([...androidGames, ...pcGames].map((g) => g.id)).size, 20, 'ids unique');
 
-// No fabricated download URLs: a link may only appear with a recorded source entry,
-// and no entry may claim an authorized download without a licence note.
+// No fabricated source URLs: a link may only appear alongside the name of the place it
+// points at, and an unfilled slot may never link anywhere.
 for (const game of [...androidGames, ...pcGames]) {
-  for (const link of game.sourceLinks) {
-    assert.ok(/^https:\/\//.test(link.url), `${game.id}: source links must be https`);
-    assert.ok(link.kind && link.label, `${game.id}: source links need a kind and label`);
-  }
-  if (game.downloadType !== 'none') {
+  if (game.originalSourceUrl) {
     assert.ok(
-      game.licenceOrPermissionNote && !/not verified/i.test(game.licenceOrPermissionNote),
-      `${game.id}: a download type requires a permission note`,
+      /^https:\/\//.test(game.originalSourceUrl),
+      `${game.id}: the original source must be an https URL`,
+    );
+    assert.ok(
+      game.originalSource && !/not specified/i.test(game.originalSource),
+      `${game.id}: a source URL needs the name of the place it points at`,
     );
   }
   if (game.status === 'published') {
     assert.ok(game.title && game.slug, `${game.id}: a published entry needs a title and slug`);
     assert.ok(game.lastVerified, `${game.id}: a published entry needs a lastVerified date`);
   } else {
-    assert.equal(game.sourceLinks.length, 0, `${game.id}: placeholders must not link sources`);
+    assert.equal(game.originalSourceUrl, null, `${game.id}: placeholders must not link a source`);
   }
 }
 

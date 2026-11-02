@@ -55,7 +55,7 @@ export function renderChrome(activeKey) {
         </div>
         <nav class="footer-links" aria-label="Footer">
           ${PAGES.map((page) => `<a href="${page.href}">${esc(page.label)}</a>`).join('')}
-          <button class="link-button" type="button" data-open-legal>About download links</button>
+          <button class="link-button" type="button" data-open-legal>About the source links</button>
         </nav>
         <p class="muted footer-note">
           All game names, artwork and trademarks belong to their respective owners. Game Archieves is an
@@ -73,12 +73,12 @@ function mountLegalDialog() {
   const dialog = document.createElement('dialog');
   dialog.className = 'sheet legal-dialog';
   dialog.innerHTML = `
-    <h2>How download links work here</h2>
-    <p>Game Archieves lists a download link only when the rights holder has authorized redistribution,
-      or when the licence (open-source, public-domain or creator-authorized homebrew) permits it.</p>
-    <p>In every other case you will see an <strong>Official store</strong> or
-      <strong>Developer website</strong> link instead, or <strong>Source not verified</strong> when no
-      lawful source could be confirmed. Not every game listed here is free.</p>
+    <h2>Where the links here go</h2>
+    <p>Each entry shows one link: the place the game actually comes from &mdash; its official store
+      page, the developer's own site, or the project page of an open-source or homebrew title.
+      Never a re-upload or a mirror, and Game Archieves hosts no game files itself.</p>
+    <p>Where no such place could be confirmed you will see <strong>Source not verified</strong> and
+      no link at all. The price shown is the one that source publishes; not every game here is free.</p>
     <p>For emulator entries the emulator application and the game are separate things. You must obtain
       any game files, BIOS, firmware or keys yourself from lawful sources &mdash; none are provided here.</p>
     <form method="dialog"><button class="btn btn-primary" type="submit">Close</button></form>`;

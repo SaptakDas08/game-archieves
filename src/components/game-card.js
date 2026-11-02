@@ -1,9 +1,9 @@
 import { esc } from './chrome.js';
 
-/** Badge derived from the recorded price/licence data — never invented. */
+/** Badge derived from the recorded price — never invented. */
 export function statusBadge(game) {
   if (game.status !== 'published') return null;
-  const price = String(game.priceModel || '');
+  const price = String(game.price || '');
   if (/open-source/i.test(price)) return 'Open-source';
   if (/^free/i.test(price)) return 'Free';
   if (/^paid/i.test(price)) return 'Paid';

@@ -292,9 +292,6 @@ section.block { padding: var(--s-4) 0; }
   to { background-position: -150% 0; }
 }
 
-.source-links { list-style: none; padding: 0; margin: 0 0 var(--s-2); display: grid; gap: 0.5rem; }
-.source-links li { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-.source-kind { font-size: 0.82rem; }
 .notice {
   background: var(--accent-soft); border: 1px solid rgba(124, 92, 255, 0.3);
   border-radius: var(--r-sm); padding: 0.7rem 0.9rem; font-size: 0.88rem; margin: 0 0 0.5rem;

@@ -7,13 +7,9 @@
 // never have to write all the fields. Order in the list is the catalogue order.
 //
 // RULES: never invent a value — use UNSPEC where the developer publishes none.
-// Never add a download URL unless the licence or the rights holder expressly
-// authorizes redistribution; otherwise link the official store or developer page.
-//
-// downloadType: 'official-store' | 'authorized-apk' | 'authorized-rom'
-//             | 'official-emulator' | 'none'
-// sourceLinks[].kind: 'official-store' | 'developer-website' | 'authorized-download'
-//                   | 'open-source' | 'homebrew-source' | 'compatibility'
+// `originalSourceUrl` is the one link an entry shows, and it must point at the place the
+// game actually comes from: its official store page, the developer's own site, or the
+// project page of an open-source or homebrew title. Never a re-upload or a mirror.
 
 const UNSPEC = 'Not specified by developer';
 
@@ -33,12 +29,11 @@ const UNSPEC = 'Not specified by developer';
     androidMinimumVersion: UNSPEC,
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,
-    priceModel: UNSPEC,
+    price: 'Free',                      // as published, e.g. 'Free', '$4.99', '₹399'
     emulatorCompatibility: [],          // [{ name: 'Emulator', url: 'https://…' }]
     compatibilityNotes: '',
-    sourceLinks: [{ kind: 'official-store', label: 'Official store', url: 'https://…' }],
-    downloadType: 'none',
-    licenceOrPermissionNote: 'Why this link is lawful to show.',
+    originalSource: 'Google Play',      // the place the game comes from
+    originalSourceUrl: 'https://…',     // where that place is
     requirementsSource: 'Where the requirements above came from.',
     imageSource: 'Where the artwork came from.',
     lastVerified: '2026-11-02',         // YYYY-MM-DD — required once the slot is filled
@@ -66,12 +61,11 @@ function fillSlot(game, i) {
     androidMinimumVersion: UNSPEC,
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,
-    priceModel: UNSPEC,
+    price: UNSPEC,
     emulatorCompatibility: [],
     compatibilityNotes: '',
-    sourceLinks: [],
-    downloadType: 'none',
-    licenceOrPermissionNote: 'Source not verified.',
+    originalSource: UNSPEC,
+    originalSourceUrl: null,
     requirementsSource: 'Not verified.',
     imageSource: 'Placeholder artwork.',
     lastVerified: null,

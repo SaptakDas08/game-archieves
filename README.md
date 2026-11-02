@@ -46,7 +46,8 @@ in place:
 4. Fill the requirement fields **only** from an official source. Leave the literal string
    `'Not specified by developer'` (the `UNSPEC` constant) anywhere the developer does not
    publish a value — never guess.
-5. Add `sourceLinks` entries (see below) and a `licenceOrPermissionNote`.
+5. Set `price` to whatever the source publishes (`'Free'`, `'$19.99'`, `'₹399'`), and set
+   `originalSource` / `originalSourceUrl` to the place it comes from (see below).
 6. Set `requirementsSource`, `imageSource` and `lastVerified` (`YYYY-MM-DD`).
 
 Save, and the game appears immediately — a slot goes live as soon as it has a `title`. Run
@@ -62,8 +63,8 @@ and the home page counts are all derived from the array length, so nothing else 
 ### Edit the "About me" section
 
 It is static markup in `index.html`, in the `<section>` marked `aria-labelledby="about"`.
-The paragraph tagged `<!-- EDIT ME -->` is yours to replace; the rest describes how this
-catalogue sources its links.
+The paragraph tagged `<!-- EDIT ME -->` is yours to replace; the rest describes where this
+catalogue's links go.
 
 ### Images
 
@@ -82,20 +83,16 @@ These rules are enforced by convention and partly by `npm test`:
 
 - **Never** list pirated ROMs or ISOs, unauthorized torrents or magnet links, cracked APKs,
   re-uploaded paid games, or BIOS/firmware/keys.
-- A direct download link may only appear when the rights holder expressly authorizes
-  redistribution, or the licence (open-source, public domain, creator-authorized homebrew)
-  permits it. Otherwise link the official store or developer page.
-- If nothing can be verified, leave `sourceLinks: []` — the detail view then shows
-  **Source not verified** and no download action.
-- Never invent a title, requirement, price, licence, screenshot or URL.
+- Each entry shows exactly one link, `originalSourceUrl`, and it must point at the place the
+  game actually comes from: its official store page, the developer's own site, or the project
+  page of an open-source or homebrew title. Never a re-upload or a mirror.
+- If no such place can be confirmed, leave `originalSourceUrl: null` — the detail view then
+  shows **Source not verified** and no link. `npm test` also rejects a non-https URL, and a URL
+  without an `originalSource` name to go with it.
+- Never invent a title, requirement, price, screenshot or URL. `price` is whatever that source
+  publishes, copied as published.
 - For emulator entries, the emulator and the game are separate: link the emulator's official
   site and state that players must supply game files themselves from lawful sources.
-
-`sourceLinks[].kind` controls the label shown next to each link, so an external link is never
-mislabelled as a download:
-
-`official-store` · `developer-website` · `authorized-download` · `open-source` ·
-`homebrew-source` · `compatibility`
 
 ## Project structure
 
