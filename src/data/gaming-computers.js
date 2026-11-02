@@ -1,0 +1,205 @@
+// Gaming Computers catalogue — 10 slots (pc-01 … pc-10).
+//
+// EDITING: see the notes at the top of android-emulators.js. The same rules
+// apply: no invented requirements, no download URL without express permission.
+//
+// downloadType: 'official-store' | 'authorized-direct-download'
+//             | 'authorized-torrent' | 'none'
+
+const UNSPEC = 'Not specified by developer';
+
+const noRequirements = {
+  minimumOS: UNSPEC,
+  minimumCPU: UNSPEC,
+  minimumRAM: UNSPEC,
+  minimumGPU: UNSPEC,
+  graphicsAPI: UNSPEC,
+  minimumStorage: UNSPEC,
+  recommendedRequirements: UNSPEC,
+};
+
+export const pcGames = [
+  {
+    id: 'pc-01',
+    status: 'published',
+    title: '0 A.D.',
+    slug: '0-ad',
+    genre: 'Real-time strategy',
+    shortDescription:
+      'A free, open-source historical real-time strategy game of ancient warfare, developed by Wildfire Games.',
+    coverImage: null,
+    screenshots: [],
+    developer: 'Wildfire Games',
+    publisher: 'Wildfire Games',
+    releaseDate: UNSPEC,
+    supportedOS: ['Windows', 'Linux', 'macOS'],
+    ...noRequirements,
+    priceModel: 'Free and open-source (GPLv2 code, CC BY-SA art).',
+    sourceLinks: [
+      { kind: 'developer-website', label: 'Developer website', url: 'https://play0ad.com/' },
+      { kind: 'open-source', label: 'Open-source project', url: 'https://gitea.wildfiregames.com/0ad/0ad' },
+    ],
+    downloadType: 'none',
+    licenceOrPermissionNote:
+      'Free software. Official builds are published by Wildfire Games; Game Archieves links to them rather than mirroring installers.',
+    requirementsSource: 'Not verified — check the official page for current system requirements.',
+    imageSource: 'No press-kit artwork supplied; placeholder shown.',
+    lastVerified: '2026-11-02',
+  },
+  {
+    id: 'pc-02',
+    status: 'published',
+    title: 'SuperTuxKart',
+    slug: 'supertuxkart',
+    genre: 'Kart racing',
+    shortDescription:
+      'A free and open-source 3D kart racing game with single-player, split-screen and online multiplayer.',
+    coverImage: null,
+    screenshots: [],
+    developer: 'SuperTuxKart Team',
+    publisher: 'SuperTuxKart Team',
+    releaseDate: UNSPEC,
+    supportedOS: ['Windows', 'Linux', 'macOS'],
+    ...noRequirements,
+    priceModel: 'Free and open-source (GPLv3).',
+    sourceLinks: [
+      { kind: 'developer-website', label: 'Developer website', url: 'https://supertuxkart.net/' },
+      { kind: 'open-source', label: 'Open-source project', url: 'https://github.com/supertuxkart/stk-code' },
+    ],
+    downloadType: 'none',
+    licenceOrPermissionNote: 'GPLv3. Official builds are published by the project team.',
+    requirementsSource: 'Not verified — check the official page for current system requirements.',
+    imageSource: 'No press-kit artwork supplied; placeholder shown.',
+    lastVerified: '2026-11-02',
+  },
+  {
+    id: 'pc-03',
+    status: 'published',
+    title: 'The Battle for Wesnoth',
+    slug: 'the-battle-for-wesnoth',
+    genre: 'Turn-based strategy',
+    shortDescription:
+      'A turn-based tactical strategy game set in a high-fantasy world, with campaigns and a large community content library.',
+    coverImage: null,
+    screenshots: [],
+    developer: 'The Battle for Wesnoth Project',
+    publisher: 'The Battle for Wesnoth Project',
+    releaseDate: UNSPEC,
+    supportedOS: ['Windows', 'Linux', 'macOS'],
+    ...noRequirements,
+    priceModel: 'Free and open-source (GPLv2). Paid store listings exist — check the official page.',
+    sourceLinks: [
+      { kind: 'developer-website', label: 'Developer website', url: 'https://www.wesnoth.org/' },
+      { kind: 'open-source', label: 'Open-source project', url: 'https://github.com/wesnoth/wesnoth' },
+    ],
+    downloadType: 'none',
+    licenceOrPermissionNote: 'GPLv2. Official builds are published by the project.',
+    requirementsSource: 'Not verified — check the official page for current system requirements.',
+    imageSource: 'No press-kit artwork supplied; placeholder shown.',
+    lastVerified: '2026-11-02',
+  },
+  {
+    id: 'pc-04',
+    status: 'published',
+    title: 'OpenTTD',
+    slug: 'openttd',
+    genre: 'Business simulation',
+    shortDescription:
+      'An open-source transport-business simulation inspired by Transport Tycoon Deluxe, with multiplayer and heavy modding support.',
+    coverImage: null,
+    screenshots: [],
+    developer: 'OpenTTD Team',
+    publisher: 'OpenTTD Team',
+    releaseDate: UNSPEC,
+    supportedOS: ['Windows', 'Linux', 'macOS'],
+    ...noRequirements,
+    priceModel: 'Free and open-source (GPLv2).',
+    sourceLinks: [
+      { kind: 'developer-website', label: 'Developer website', url: 'https://www.openttd.org/' },
+      { kind: 'open-source', label: 'Open-source project', url: 'https://github.com/OpenTTD/OpenTTD' },
+    ],
+    downloadType: 'none',
+    licenceOrPermissionNote:
+      'GPLv2. Ships with free replacement graphics; original Transport Tycoon Deluxe data files are not distributed.',
+    requirementsSource: 'Not verified — check the official page for current system requirements.',
+    imageSource: 'No press-kit artwork supplied; placeholder shown.',
+    lastVerified: '2026-11-02',
+  },
+  {
+    id: 'pc-05',
+    status: 'published',
+    title: 'Veloren',
+    slug: 'veloren',
+    genre: 'Action RPG / voxel sandbox',
+    shortDescription:
+      'A multiplayer voxel action-RPG built in Rust, developed in the open and free to download.',
+    coverImage: null,
+    screenshots: [],
+    developer: 'Veloren contributors',
+    publisher: 'Veloren contributors',
+    releaseDate: UNSPEC,
+    supportedOS: ['Windows', 'Linux', 'macOS'],
+    ...noRequirements,
+    priceModel: 'Free and open-source (GPLv3).',
+    sourceLinks: [
+      { kind: 'developer-website', label: 'Developer website', url: 'https://veloren.net/' },
+      { kind: 'open-source', label: 'Open-source project', url: 'https://gitlab.com/veloren/veloren' },
+    ],
+    downloadType: 'none',
+    licenceOrPermissionNote: 'GPLv3. Official builds are published by the project.',
+    requirementsSource: 'Not verified — check the official page for current system requirements.',
+    imageSource: 'No press-kit artwork supplied; placeholder shown.',
+    lastVerified: '2026-11-02',
+  },
+  {
+    id: 'pc-06',
+    status: 'published',
+    title: 'Xonotic',
+    slug: 'xonotic',
+    genre: 'Arena first-person shooter',
+    shortDescription:
+      'A fast-paced open-source arena shooter with classic movement mechanics and dedicated multiplayer servers.',
+    coverImage: null,
+    screenshots: [],
+    developer: 'Team Xonotic',
+    publisher: 'Team Xonotic',
+    releaseDate: UNSPEC,
+    supportedOS: ['Windows', 'Linux', 'macOS'],
+    ...noRequirements,
+    priceModel: 'Free and open-source (GPLv3).',
+    sourceLinks: [
+      { kind: 'developer-website', label: 'Developer website', url: 'https://xonotic.org/' },
+    ],
+    downloadType: 'none',
+    licenceOrPermissionNote: 'GPLv3. Official builds are published by Team Xonotic.',
+    requirementsSource: 'Not verified — check the official page for current system requirements.',
+    imageSource: 'No press-kit artwork supplied; placeholder shown.',
+    lastVerified: '2026-11-02',
+  },
+  ...placeholderSlots(),
+];
+
+function placeholderSlots() {
+  return [7, 8, 9, 10].map((n) => ({
+    id: `pc-${String(n).padStart(2, '0')}`,
+    status: 'placeholder',
+    title: `PC slot ${n}`,
+    slug: `pc-slot-${n}`,
+    genre: UNSPEC,
+    shortDescription: 'Details being added. This slot is reserved and has no game assigned yet.',
+    coverImage: null,
+    screenshots: [],
+    developer: UNSPEC,
+    publisher: UNSPEC,
+    releaseDate: UNSPEC,
+    supportedOS: [],
+    ...noRequirements,
+    priceModel: UNSPEC,
+    sourceLinks: [],
+    downloadType: 'none',
+    licenceOrPermissionNote: 'Source not verified.',
+    requirementsSource: 'Not verified.',
+    imageSource: 'Placeholder artwork.',
+    lastVerified: null,
+  }));
+}
