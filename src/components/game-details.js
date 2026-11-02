@@ -1,10 +1,20 @@
 import { esc } from './chrome.js';
 import { platformLabel, statusBadge } from './game-card.js';
 
+/** `location` holds a store URL, so an http(s) value becomes a link. Anything else — including
+ *  a javascript: or data: URL — stays plain escaped text and is never put in an href. */
+function cell(value) {
+  if (!/^https?:\/\/\S+$/.test(value)) return esc(value);
+  const shown = String(value).replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+  return `<a href="${esc(value)}" target="_blank" rel="noopener noreferrer">${esc(
+    shown,
+  )}<span class="sr-only"> (opens in a new tab)</span></a>`;
+}
+
 function rows(pairs) {
   return `<dl class="spec-list">${pairs
     .filter(([, value]) => value)
-    .map(([label, value]) => `<dt>${esc(label)}</dt><dd>${esc(value)}</dd>`)
+    .map(([label, value]) => `<dt>${esc(label)}</dt><dd>${cell(value)}</dd>`)
     .join('')}</dl>`;
 }
 

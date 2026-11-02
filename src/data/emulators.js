@@ -11,6 +11,9 @@
 // The emulator and the game are separate things: players supply the emulator, and any BIOS,
 // firmware or keys, themselves from lawful sources. None of those belong in this catalogue.
 //
+// LOCATION: `location` is a link out. Point it at the store or developer page the game
+// actually comes from, never a mirror, a tracker, a re-upload or a ROM site.
+//
 // ATTACHMENTS: `attachments` publishes files out of this repo (drop them in public/files/)
 // as the download buttons in the download section. Only attach a file you have the right to
 // hand out yourself — your own build, patch, config or notes. Never a game file you do not
@@ -46,7 +49,7 @@ const UNSPEC = 'Not specified by developer';
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,         // ROM file size, if the author publishes it
     price: 'Free',                      // as published, e.g. 'Free', 'Pay what you want'
-    location: UNSPEC,                   // where it comes from, e.g. "Author's own page"
+    location: UNSPEC,                   // store or project page URL, e.g. 'https://example.com/game'
     downloadFormat: 'ROM',              // what the source hands you: 'ROM', 'ROM (.nes)', 'Installer'
     attachments: [                      // your own files from public/files/, never someone else's game
       // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },

@@ -1,6 +1,7 @@
 // Self-check for the catalogue search/filter/sort logic: node tests/search.test.mjs
 import assert from 'node:assert/strict';
 import { filterGames, chipsFor, matchesQuery } from '../src/utils/search.js';
+import { detailsMarkup } from '../src/components/game-details.js';
 import { androidGames } from '../src/data/android.js';
 import { emulatorGames } from '../src/data/emulators.js';
 import { pcGames } from '../src/data/gaming-computers.js';
@@ -32,6 +33,20 @@ for (const game of catalogue) {
   } else {
     assert.equal(game.attachments.length, 0, `${game.id}: placeholders must not attach files`);
   }
+}
+
+// --- `location` is the one link an entry renders, so only http(s) may reach an href ---
+
+const linked = detailsMarkup({ title: 'T', location: 'https://store.steampowered.com/app/1/' });
+assert.ok(
+  linked.includes(
+    '<a href="https://store.steampowered.com/app/1/" target="_blank" rel="noopener noreferrer">',
+  ),
+  'a store URL in location must render as a new-tab link',
+);
+for (const hostile of ['javascript:alert(1)', 'data:text/html,<script>x</script>', 'Steam']) {
+  const markup = detailsMarkup({ title: 'T', location: hostile });
+  assert.ok(!markup.includes('<a '), `location ${hostile} must stay plain text, not a link`);
 }
 
 // --- search/filter/sort logic, on fixtures so it holds whatever the catalogue contains ---

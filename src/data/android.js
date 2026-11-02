@@ -9,6 +9,9 @@
 // RULES: never invent a value — use UNSPEC where the developer publishes none. Never invent
 // a title, requirement, screenshot or price either; copy the price exactly as published.
 //
+// LOCATION: `location` is a link out. Point it at the store or developer page the game
+// actually comes from, never a mirror, a tracker, a re-upload or a ROM site.
+//
 // ATTACHMENTS: `attachments` publishes files out of this repo (drop them in public/files/)
 // as the download buttons in the download section. Only attach a file you have the right to
 // hand out yourself — your own build, patch, config or notes. Never a game file you do not
@@ -44,7 +47,7 @@ const UNSPEC = 'Not specified by developer';
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,
     price: 'Free',                      // as published, e.g. 'Free', '$4.99', '₹399'
-    location: UNSPEC,                   // where it comes from, e.g. 'Google Play', 'Developer site'
+    location: UNSPEC,                   // store page URL, e.g. 'https://play.google.com/store/apps/details?id=…'
     downloadFormat: 'APK',              // what the source hands you: 'APK', 'Play Store install'
     attachments: [                      // your own files from public/files/, never someone else's game
       // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },
