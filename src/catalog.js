@@ -25,10 +25,15 @@ export function initCatalogPage({ activeKey, games, chips }) {
     .join('');
 
   const state = { query: '', chip: 'all', sort: 'default' };
+  let firstRender = true;
 
   function render() {
     const visible = filterGames(games, state);
     grid.innerHTML = visible.map(gameCard).join('');
+    // Entrance stagger on the first paint only: the grid is rebuilt on every keystroke
+    // and replaying the animation there would be noise, not polish.
+    grid.classList.toggle('grid--enter', firstRender);
+    firstRender = false;
 
     const empty = visible.length === 0;
     grid.hidden = empty;

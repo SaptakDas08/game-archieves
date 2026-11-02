@@ -20,6 +20,9 @@
   --s-4: 2.5rem;
   --s-5: 4rem;
   --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  /* Height of the filled nav (measured). The header is an empty shell until JS fills
+     it, so this is reserved up front — see .site-header. */
+  --header-h: 67px;
   --font-head: "Space Grotesk", "Segoe UI Semibold", "Trebuchet MS", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --maxw: 1180px;
@@ -79,6 +82,11 @@ a:hover { color: #fff; }
 
 .wrap { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
 
+/* The card grid is filled by JS, so without this the footer paints just under the
+   toolbar and is then shoved down a full screen of cards — the page's largest layout
+   shift. Holding a viewport of height keeps the footer off-screen until content lands. */
+main { min-height: calc(100vh - var(--header-h)); }
+
 /* ---------- navigation ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 10;
@@ -86,6 +94,10 @@ a:hover { color: #fff; }
      a blurred strip every scroll frame and visibly janks the page. */
   background: var(--bg);
   border-bottom: 1px solid var(--line);
+  /* The nav is injected by JS, so this shell is empty at first paint. Reserving the
+     filled height stops the page dropping once it renders. Keep --header-h in sync
+     if .nav padding or link size changes. */
+  min-height: var(--header-h);
 }
 .nav {
   width: min(100% - 2rem, var(--maxw)); margin-inline: auto;
@@ -227,8 +239,24 @@ section.block { padding: var(--s-4) 0; }
   background: var(--surface); color: var(--text); border: 1px solid var(--line);
   border-radius: var(--r-lg); padding: var(--s-3); max-width: 760px; width: min(94vw, 760px);
   max-height: 88vh; overflow: auto; box-shadow: var(--shadow);
+  /* Open/close animates opacity + translate only, so it stays on the compositor.
+     @starting-style gives the opening frame something to animate from; the discrete
+     display/overlay transitions keep the dialog painted while it closes. Browsers
+     without @starting-style just pop in, as before. */
+  opacity: 0; translate: 0 10px;
+  transition: opacity 0.22s ease, translate 0.22s ease,
+    display 0.22s allow-discrete, overlay 0.22s allow-discrete;
 }
-.sheet::backdrop { background: rgba(5, 6, 10, 0.82); }
+.sheet[open] { opacity: 1; translate: 0 0; }
+@starting-style { .sheet[open] { opacity: 0; translate: 0 10px; } }
+
+.sheet::backdrop {
+  background: rgba(5, 6, 10, 0.82);
+  opacity: 0;
+  transition: opacity 0.22s ease, display 0.22s allow-discrete, overlay 0.22s allow-discrete;
+}
+.sheet[open]::backdrop { opacity: 1; }
+@starting-style { .sheet[open]::backdrop { opacity: 0; } }
 .sheet section { padding-top: var(--s-2); border-top: 1px solid var(--line); margin-top: var(--s-2); }
 .sheet-close {
   float: right; background: var(--surface-2); color: var(--text); border: 1px solid var(--line);
@@ -269,6 +297,23 @@ section.block { padding: var(--s-4) 0; }
   border-radius: var(--r-sm); padding: 0.7rem 0.9rem; font-size: 0.88rem; margin: 0 0 0.5rem;
 }
 .notice--warn { background: rgba(255, 184, 107, 0.1); border-color: rgba(255, 184, 107, 0.35); color: var(--warn); }
+
+/* ---------- entrance ---------- */
+@keyframes rise {
+  from { opacity: 0; translate: 0 12px; }
+}
+
+/* `both` holds the from-state through the delay. The resting rules never set opacity,
+   so nothing is left invisible when the animation is skipped (reduced motion) or the
+   cards arrive before the stylesheet. */
+.hero > *, .category-card, .grid--enter .card { animation: rise 0.45s ease both; }
+
+/* Stagger on a 5-cycle: the wave reads across the grid, and the last card never waits
+   more than a quarter second however many entries a catalogue grows to. */
+.hero > :nth-child(2), .category-card:nth-child(2), .grid--enter .card:nth-child(5n + 2) { animation-delay: 0.06s; }
+.hero > :nth-child(3), .category-card:nth-child(3), .grid--enter .card:nth-child(5n + 3) { animation-delay: 0.12s; }
+.hero > :nth-child(4), .grid--enter .card:nth-child(5n + 4) { animation-delay: 0.18s; }
+.grid--enter .card:nth-child(5n) { animation-delay: 0.24s; }
 
 /* ---------- footer ---------- */
 .site-footer { border-top: 1px solid var(--line); background: var(--surface); margin-top: var(--s-4); }

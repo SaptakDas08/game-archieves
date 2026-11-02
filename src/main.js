@@ -12,6 +12,7 @@ mountDetails(all);
 
 const featured = all.filter((game) => game.status === 'published').slice(0, 4);
 const grid = document.querySelector('[data-featured]');
+grid.classList.add('grid--enter'); // rendered once, so the entrance stagger never replays
 grid.innerHTML = featured.length
   ? featured.map(gameCard).join('')
   : `<p class="muted">Featured entries appear here once catalogue records are published.</p>`;
