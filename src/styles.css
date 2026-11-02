@@ -190,6 +190,7 @@ section.block { padding: var(--s-4) 0; }
 
 /* Prose, not a grid — cap the measure so the lines stay readable on a wide screen. */
 .about { max-width: 64ch; display: grid; gap: var(--s-1); }
+.about-links { display: flex; flex-wrap: wrap; gap: var(--s-1); }
 
 /* ---------- catalogue ---------- */
 .page-head { padding: var(--s-4) 0 var(--s-2); }
