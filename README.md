@@ -101,8 +101,9 @@ catalogue's links go.
 
 The button row below it (`<p class="about-links">`) holds the GitHub link plus a Discord and a
 Buy Me a Coffee button. Those two ship **commented out** so no dead link is published: fill in
-the invite code and the Buy Me a Coffee name, then delete the `<!-- EDIT ME …` line and the
-`-->` after them. Add another service the same way — copy a link, keep `class="btn btn-ghost"`,
+the invite code and the Buy Me a Coffee name, then delete the three comment-only lines around
+them — the `EDIT ME` note, the bare `<!--` and the bare `-->`. Add another service the same way
+— copy a link, keep `class="btn btn-ghost"`,
 `target="_blank" rel="noopener noreferrer"` and the `sr-only` "opens in a new tab" note.
 
 ### Images
