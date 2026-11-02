@@ -273,7 +273,7 @@ section.block { padding: var(--s-4) 0; }
 .spec-list dt { color: var(--muted); font-size: 0.88rem; }
 .spec-list dd { margin: 0; font-size: 0.92rem; }
 
-.files { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-1); }
+.files { list-style: none; padding: 0; margin: 0 0 var(--s-2); display: flex; flex-wrap: wrap; gap: var(--s-1); }
 
 /* Steam-style filmstrip: one row that slides sideways, snapping a tile to the left edge.
    The scrollbar is hidden because the arrows and the drag/wheel gesture are the controls. */

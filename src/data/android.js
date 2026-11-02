@@ -6,16 +6,11 @@
 // "Coming soon" card. Anything you omit keeps its placeholder default, so you
 // never have to write all the fields. Order in the list is the catalogue order.
 //
-// RULES: never invent a value — use UNSPEC where the developer publishes none.
-// `originalSourceUrl` is the one link an entry shows, and it must point at the place the
-// game actually comes from: its official store page, the developer's own site, or the
-// project page of an open-source or homebrew title. An APK only counts if the developer
-// publishes it there themselves (F-Droid, GitHub releases, their own site). Never an APK
-// re-upload site, a mirror or a cracked build.
-
+// RULES: never invent a value — use UNSPEC where the developer publishes none. Never invent
+// a title, requirement, screenshot or price either; copy the price exactly as published.
 //
 // ATTACHMENTS: `attachments` publishes files out of this repo (drop them in public/files/)
-// as extra buttons under the download section. Only attach a file you have the right to
+// as the download buttons in the download section. Only attach a file you have the right to
 // hand out yourself — your own build, patch, config or notes. Never a game file you do not
 // own: no ROM dumps, no APKs of someone else's app, no ISOs, cracks, BIOS, firmware or keys.
 
@@ -53,8 +48,6 @@ const UNSPEC = 'Not specified by developer';
     attachments: [                      // your own files from public/files/, never someone else's game
       // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },
     ],
-    originalSource: 'Google Play',      // the place the game comes from
-    originalSourceUrl: 'https://…',     // where that place is
     requirementsSource: 'Where the requirements above came from.',
     imageSource: 'Where the artwork came from.',
     lastVerified: '2026-11-02',         // YYYY-MM-DD — required once the slot is filled
@@ -85,8 +78,6 @@ function fillSlot(game, i) {
     price: UNSPEC,
     downloadFormat: 'APK',
     attachments: [],
-    originalSource: UNSPEC,
-    originalSourceUrl: null,
     requirementsSource: 'Not verified.',
     imageSource: 'Placeholder artwork.',
     lastVerified: null,

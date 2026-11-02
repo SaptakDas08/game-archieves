@@ -56,7 +56,7 @@ export function renderChrome(activeKey) {
         </div>
         <nav class="footer-links" aria-label="Footer">
           ${PAGES.map((page) => `<a href="${page.href}">${esc(page.label)}</a>`).join('')}
-          <button class="link-button" type="button" data-open-legal>About the source links</button>
+          <button class="link-button" type="button" data-open-legal>About the downloads</button>
         </nav>
         <p class="muted footer-note">
           All game names, artwork and trademarks belong to their respective owners. Game Archieves is an
@@ -74,12 +74,14 @@ function mountLegalDialog() {
   const dialog = document.createElement('dialog');
   dialog.className = 'sheet legal-dialog';
   dialog.innerHTML = `
-    <h2>Where the links here go</h2>
-    <p>Each entry shows one link: the place the game actually comes from &mdash; its official store
-      page, the developer's own site, or the project page of an open-source or homebrew title.
-      Never a re-upload or a mirror, and Game Archieves hosts no game files itself.</p>
-    <p>Where no such place could be confirmed you will see <strong>Source not verified</strong> and
-      no link at all. The price shown is the one that source publishes; not every game here is free.</p>
+    <h2>About the downloads here</h2>
+    <p>Game Archieves is a hand-written catalogue: titles, requirements, screenshots and prices.
+      An entry offers a download only when a file has been attached to it, and that file is served
+      from this site &mdash; it is never a re-upload of someone else's game, and no trackers,
+      mirrors or ROM sites are listed here.</p>
+    <p>Where nothing has been attached you will see <strong>No file has been attached to this entry
+      yet</strong>. The price shown is the one the game's own publisher asks; not every game here
+      is free.</p>
     <p>For emulator entries the emulator application and the game are separate things. You must obtain
       any game files, BIOS, firmware or keys yourself from lawful sources &mdash; none are provided here.</p>
     <form method="dialog"><button class="btn btn-primary" type="submit">Close</button></form>`;

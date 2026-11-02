@@ -15,33 +15,10 @@ assert.equal(pcGames.length, 10, 'Gaming Computers must have 10 slots');
 assert.equal(new Set(catalogue.map((g) => g.slug)).size, 30, 'slugs unique');
 assert.equal(new Set(catalogue.map((g) => g.id)).size, 30, 'ids unique');
 
-// The download sections are named after a file type, so the link must never be a tracker or
-// a re-upload. shortcut: a substring denylist catches the obvious hosts only — if entries
-// ever stop being hand-written, check the host against an allowlist of known sources instead.
-const BANNED = ['1337x', 'piratebay', 'rarbg', 'fitgirl', 'skidrow', 'igg-games',
-  'emuparadise', 'romsmania', 'coolrom', 'apkpure', 'apkmirror', 'aptoide'];
-
-// No fabricated source URLs: a link may only appear alongside the name of the place it
-// points at, and an unfilled slot may never link anywhere.
 for (const game of catalogue) {
-  if (game.originalSourceUrl) {
-    assert.ok(
-      /^https:\/\//.test(game.originalSourceUrl),
-      `${game.id}: the original source must be an https URL`,
-    );
-    const host = new URL(game.originalSourceUrl).hostname.toLowerCase();
-    assert.ok(
-      !BANNED.some((banned) => host.includes(banned)),
-      `${game.id}: ${host} is a re-upload or tracker, not the place the game comes from`,
-    );
-    assert.ok(
-      game.originalSource && !/not specified/i.test(game.originalSource),
-      `${game.id}: a source URL needs the name of the place it points at`,
-    );
-  }
-  // Attachments are the one download served from this site rather than from somebody else's
-  // page, so the path must stay inside public/files (no mirror URL, no ../ escape) and say
-  // what the file is. Whether the file may lawfully be there is on whoever adds it.
+  // Attachments are the only download an entry offers, so the path must stay inside
+  // public/files (no off-site URL, no ../ escape) and say what the file is. Whether the file
+  // may lawfully be there is on whoever adds it.
   for (const file of game.attachments) {
     assert.ok(
       /^\.\/files\/[\w.-]+$/.test(file.url),
@@ -53,7 +30,6 @@ for (const game of catalogue) {
     assert.ok(game.title && game.slug, `${game.id}: a published entry needs a title and slug`);
     assert.ok(game.lastVerified, `${game.id}: a published entry needs a lastVerified date`);
   } else {
-    assert.equal(game.originalSourceUrl, null, `${game.id}: placeholders must not link a source`);
     assert.equal(game.attachments.length, 0, `${game.id}: placeholders must not attach files`);
   }
 }

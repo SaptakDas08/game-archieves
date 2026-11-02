@@ -70,27 +70,18 @@ function gallery(game) {
   );
 }
 
-/** Files kept in this repo (public/files), offered next to — never instead of — the source link. */
+/** Files kept in this repo (public/files) — the only download an entry offers. */
 function attached(game) {
-  if (!game.attachments?.length) return '';
-  return `<p class="muted small">Attached files</p>
-    <ul class="files">${game.attachments
-      .map(
-        (file) => `<li><a class="btn btn-ghost" href="${esc(file.url)}" download>${esc(
-          file.label,
-        )}</a></li>`,
-      )
-      .join('')}</ul>`;
-}
-
-function originalSource(game) {
-  if (!game.originalSourceUrl) {
-    return `<p class="notice notice--warn">Source not verified &mdash; no store or download action is shown.</p>`;
+  if (!game.attachments?.length) {
+    return `<p class="notice notice--warn">No file has been attached to this entry yet.</p>`;
   }
-  return `<a class="btn btn-ghost" href="${esc(game.originalSourceUrl)}"
-      target="_blank" rel="noopener noreferrer">
-      Open on ${esc(game.originalSource)}<span class="sr-only"> (opens in a new tab)</span>
-    </a>`;
+  return `<ul class="files">${game.attachments
+    .map(
+      (file) => `<li><a class="btn btn-ghost" href="${esc(file.url)}" download>${esc(
+        file.label,
+      )}</a></li>`,
+    )
+    .join('')}</ul>`;
 }
 
 export function detailsMarkup(game) {
@@ -152,16 +143,8 @@ export function detailsMarkup(game) {
     </section>
 
     <section><h3>${esc(game.downloadFormat ? `Download ${game.downloadFormat}` : 'Download')}</h3>
-      ${rows([
-        ['Price', game.price],
-        ['Available from', game.originalSource],
-      ])}
-      ${originalSource(game)}
-      <p class="muted small">
-        The link opens the rights holder's own download page, never a mirror.
-        Last verified: ${esc(game.lastVerified || 'not verified')}
-      </p>
       ${attached(game)}
+      ${rows([['Price', game.price]])}
     </section>`;
 }
 

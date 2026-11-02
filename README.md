@@ -48,8 +48,8 @@ in place:
 4. Fill the requirement fields **only** from an official source. Leave the literal string
    `'Not specified by developer'` (the `UNSPEC` constant) anywhere the developer does not
    publish a value — never guess.
-5. Set `price` to whatever the source publishes (`'Free'`, `'$19.99'`, `'₹399'`), and set
-   `originalSource` / `originalSourceUrl` to the place it comes from (see below).
+5. Set `price` to whatever the game's publisher asks (`'Free'`, `'$19.99'`, `'₹399'`), copied
+   as published.
 6. Set `requirementsSource`, `imageSource` and `lastVerified` (`YYYY-MM-DD`).
 
 Save, and the game appears immediately — a slot goes live as soon as it has a `title`. Run
@@ -64,11 +64,9 @@ Each detail dialog ends in a download section named after the file that source h
 name comes from one field, `downloadFormat`, which each data file defaults for its catalogue —
 change it per slot when it is wrong (`'Installer'`, `'Play Store install'`, `'ROM (.nes)'`).
 
-The section still shows the **same single link**, `originalSourceUrl`. Naming the file does not
-add a second place to get it: the link goes to the rights holder's own download and nowhere
-else, which in practice means an F-Droid or developer-hosted APK, a homebrew ROM from its
-author's itch.io or releases page, or a torrent a DRM-free publisher seeds itself. `npm test`
-rejects a handful of known tracker and APK re-upload hosts outright.
+Under that heading the section shows the files attached to the slot, then its price. Those
+attached files are the only download an entry offers — there is no link out to a store or to
+anybody else's page. A slot with nothing attached says so plainly.
 
 ### Attaching your own files
 
@@ -78,13 +76,12 @@ To hand out a file yourself, drop it in `public/files/` and list it on the slot:
 attachments: [{ url: './files/your-game-patch.zip', label: 'Fan translation patch (.zip)' }],
 ```
 
-Each one appears as a download button under the download section, below the source link.
+Each one appears as a download button at the top of the download section, above the price.
 `npm test` requires the path to stay inside `public/files` and the label to be filled in; it
-cannot tell what the file contains. **These files are published publicly from this repo, so
-only attach something you have the right to hand out** — your own build, patch, config or
-notes. A game file you do not own (a ROM dump, somebody else's APK, an ISO, a crack, BIOS,
-firmware or keys) must never go in here; the rest of the site links the rights holder for
-exactly that reason.
+cannot tell what the file contains. **These files are published publicly from this repo, and
+they are the only download the site offers, so only attach something you have the right to hand
+out** — your own build, patch, config or notes. A game file you do not own (a ROM dump,
+somebody else's APK, an ISO, a crack, BIOS, firmware or keys) must never go in here.
 
 ### Adding more than 20 entries
 
@@ -124,20 +121,14 @@ These rules are enforced by convention and partly by `npm test`:
 
 - **Never** list pirated ROMs or ISOs, unauthorized torrents or magnet links, cracked APKs,
   re-uploaded paid games, or BIOS/firmware/keys.
-- Each entry shows exactly one link, `originalSourceUrl`, and it must point at the place the
-  game actually comes from: its official store page, the developer's own site, or the project
-  page of an open-source or homebrew title. Never a re-upload or a mirror.
-- If no such place can be confirmed, leave `originalSourceUrl: null` — the detail view then
-  shows **Source not verified** and no link. `npm test` also rejects a non-https URL, and a URL
-  without an `originalSource` name to go with it.
-- Never invent a title, requirement, price, screenshot or URL. `price` is whatever that source
-  publishes, copied as published.
-- A torrent, APK or ROM may only be listed when the rights holder publishes it themselves. A
-  tracker, an APK re-upload site or a ROM site is never a source, whatever the file is.
-- For emulator entries, the emulator and the game are separate: link the emulator's official
-  site and state that players must supply game files themselves from lawful sources.
-- An `attachments` file is served from this repo, so it may only be a file you have the right
-  to distribute yourself. Never put a game file you do not own in `public/files/`.
+- Never invent a title, requirement, price, screenshot or URL. `price` is whatever the game's
+  publisher asks, copied as published.
+- The files in `attachments` are the only download the site offers, and they are served from
+  this repo, so each one may only be a file you have the right to distribute yourself — your
+  own build, patch, config or notes. Never put a game file you do not own in `public/files/`.
+  `npm test` keeps the path inside `public/files`, but it cannot see what a file contains.
+- For emulator entries, the emulator and the game are separate: players supply the emulator,
+  and any game files, BIOS, firmware or keys, themselves from lawful sources.
 
 ## Project structure
 
