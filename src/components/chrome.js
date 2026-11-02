@@ -60,7 +60,8 @@ export function renderChrome(activeKey) {
         </nav>
         <p class="muted footer-note">
           All game names, artwork and trademarks belong to their respective owners. Game Archieves is an
-          informational catalogue and does not host game files. Corrections and takedown requests:
+          informational catalogue: the only files it serves are the ones attached to an entry by its
+          owner, never a re-upload of somebody else's game. Corrections and takedown requests:
           <span class="mono">contact@example.com</span> (placeholder).
           <br />&copy; ${new Date().getFullYear()} Game Archieves.
         </p>

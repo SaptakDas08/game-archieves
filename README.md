@@ -171,5 +171,6 @@ Upload `dist/` to GitHub Pages, Netlify, Cloudflare Pages, or any static web ser
 ## Licence and contact
 
 All game names, artwork and trademarks belong to their respective owners. Game Archieves is an
-informational catalogue and does not host game files. Replace the placeholder contact address
+informational catalogue: the only files it serves are the ones you attach to an entry yourself.
+Replace the placeholder contact address
 in `src/components/chrome.js` with a real address for corrections and takedown requests.
