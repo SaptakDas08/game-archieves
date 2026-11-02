@@ -287,8 +287,12 @@ section.block { padding: var(--s-4) 0; }
   background-size: 300% 100%;
   animation: shimmer 1.8s ease-in-out infinite;
 }
-.shots--empty li:nth-child(2) .shot-ph { animation-delay: 0.25s; }
-.shots--empty li:nth-child(3) .shot-ph { animation-delay: 0.5s; }
+/* Stagger on a 5-cycle, as the card grid does: the shimmer reads across the tiles
+   and restarts each row instead of trailing further behind on every extra slot. */
+.shots--empty li:nth-child(5n + 2) .shot-ph { animation-delay: 0.12s; }
+.shots--empty li:nth-child(5n + 3) .shot-ph { animation-delay: 0.24s; }
+.shots--empty li:nth-child(5n + 4) .shot-ph { animation-delay: 0.36s; }
+.shots--empty li:nth-child(5n) .shot-ph { animation-delay: 0.48s; }
 @keyframes shimmer {
   from { background-position: 150% 0; }
   to { background-position: -150% 0; }

@@ -32,10 +32,17 @@ const noRequirements = {
     genre: 'Genre',
     shortDescription: 'One or two factual lines.',
     coverImage: null,                   // './images/games/your-game.webp'
-    screenshots: [                      // three slots — fill the ones you want, delete the rest
+    screenshots: [                      // ten slots — fill the ones you want, delete the rest
       // { url: './images/games/your-game-1.webp', alt: 'What shot 1 shows' },
       // { url: './images/games/your-game-2.webp', alt: 'What shot 2 shows' },
       // { url: './images/games/your-game-3.webp', alt: 'What shot 3 shows' },
+      // { url: './images/games/your-game-4.webp', alt: 'What shot 4 shows' },
+      // { url: './images/games/your-game-5.webp', alt: 'What shot 5 shows' },
+      // { url: './images/games/your-game-6.webp', alt: 'What shot 6 shows' },
+      // { url: './images/games/your-game-7.webp', alt: 'What shot 7 shows' },
+      // { url: './images/games/your-game-8.webp', alt: 'What shot 8 shows' },
+      // { url: './images/games/your-game-9.webp', alt: 'What shot 9 shows' },
+      // { url: './images/games/your-game-10.webp', alt: 'What shot 10 shows' },
     ],
     developer: UNSPEC,
     publisher: UNSPEC,
