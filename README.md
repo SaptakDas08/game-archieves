@@ -49,8 +49,9 @@ in place:
    `'Not specified by developer'` (the `UNSPEC` constant) anywhere the developer does not
    publish a value — never guess.
 5. Set `price` to whatever the game's publisher asks (`'Free'`, `'$19.99'`, `'₹399'`), copied
-   as published, and `location` to the store page URL it comes from. Both show in the download
-   section, price first; an `http(s)` location renders as a link, anything else as plain text.
+   as published. On Android and Personal Computer, set `location` to the store page URL the game
+   comes from; it shows under the price as a link when it is an `http(s)` URL, otherwise as plain
+   text. Emulator entries have no `location` field.
 6. Set `requirementsSource`, `imageSource` and `lastVerified` (`YYYY-MM-DD`).
 
 Save, and the game appears immediately — a slot goes live as soon as it has a `title`. Run
@@ -66,7 +67,8 @@ name comes from one field, `downloadFormat`, which each data file defaults for i
 change it per slot when it is wrong (`'Installer'`, `'Play Store install'`, `'ROM (.nes)'`).
 
 Under that heading the section shows the files attached to the slot, then its price and its
-location — the store page it comes from, linked when it is an `http(s)` URL. The attached
+location on Android and PC — the store page it comes from, linked when it is an `http(s)` URL,
+and absent on emulator entries. The attached
 files are still the only download an entry offers: the location link points at the store the
 game comes from, never at a mirror, a tracker or a re-upload. A slot with nothing attached
 says so plainly.

@@ -16,6 +16,12 @@ assert.equal(pcGames.length, 10, 'Personal Computer must have 10 slots');
 assert.equal(new Set(catalogue.map((g) => g.slug)).size, 30, 'slugs unique');
 assert.equal(new Set(catalogue.map((g) => g.id)).size, 30, 'ids unique');
 
+// Emulator entries deliberately carry no location, so no link out renders on that page.
+assert.ok(
+  emulatorGames.every((g) => g.location === undefined),
+  'emulator slots must not have a location field',
+);
+
 for (const game of catalogue) {
   // Attachments are the only download an entry offers, so the path must stay inside
   // public/files (no off-site URL, no ../ escape) and say what the file is. Whether the file
