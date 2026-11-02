@@ -34,24 +34,40 @@ function requirements(game) {
   ]);
 }
 
+/** Steam-style strip: the tiles scroll sideways and the arrows page through them. */
+function strip(tiles, { decorative = false } = {}) {
+  const list = decorative
+    ? `<ul class="shots shots--empty">${tiles}</ul>`
+    : `<ul class="shots" tabindex="0" aria-label="Screenshots">${tiles}</ul>`;
+  return `<div class="shots-strip"${decorative ? ' aria-hidden="true"' : ''}>
+      <button class="shots-nav" type="button" data-shots="-1" aria-label="Previous screenshots">&lsaquo;</button>
+      ${list}
+      <button class="shots-nav shots-nav--next" type="button" data-shots="1" aria-label="Next screenshots">&rsaquo;</button>
+    </div>`;
+}
+
 function gallery(game) {
   if (!game.screenshots?.length) {
     // Decorative skeleton tiles: aria-hidden so the sentence below is what
     // assistive tech reads, not ten empty boxes. Numbered to match the ten
     // commented screenshot slots in the data files, so you can see which is which.
-    return `<ul class="shots shots--empty" aria-hidden="true">
-        ${Array.from({ length: 10 }, (_, i) => `<li><span class="shot-ph">Shot ${i + 1}</span></li>`).join('')}
-      </ul>
+    const tiles = Array.from(
+      { length: 10 },
+      (_, i) => `<li><span class="shot-ph">Shot ${i + 1}</span></li>`,
+    ).join('');
+    return `${strip(tiles, { decorative: true })}
       <p class="muted">No screenshots have been supplied by the developer or press kit yet.</p>`;
   }
-  return `<ul class="shots">${game.screenshots
-    .map(
-      (shot, i) => `<li><button type="button" class="shot" data-lightbox="${i}">
+  return strip(
+    game.screenshots
+      .map(
+        (shot, i) => `<li><button type="button" class="shot" data-lightbox="${i}">
         <img src="${esc(shot.url)}" alt="${esc(shot.alt || `Screenshot ${i + 1} of ${game.title}`)}"
              loading="lazy" decoding="async" />
       </button></li>`,
-    )
-    .join('')}</ul>`;
+      )
+      .join(''),
+  );
 }
 
 function originalSource(game) {
@@ -154,12 +170,33 @@ export function mountDetails(games) {
     current = game;
     dialog.innerHTML = detailsMarkup(game);
     if (!dialog.open) dialog.showModal();
+    wireShots(); // after showModal: the strip has no measurable width until it is laid out
     if (pushHash) history.replaceState(null, '', `#game=${encodeURIComponent(slug)}`);
     dialog.scrollTop = 0;
   }
 
+  // Grey out an arrow once the strip has reached that end, so neither one is ever a dead button.
+  function wireShots() {
+    const list = dialog.querySelector('.shots');
+    if (!list) return;
+    const sync = () => {
+      const end = list.scrollWidth - list.clientWidth - 1;
+      dialog.querySelectorAll('[data-shots]').forEach((btn) => {
+        btn.disabled =
+          Number(btn.dataset.shots) < 0 ? list.scrollLeft <= 0 : list.scrollLeft >= end;
+      });
+    };
+    list.addEventListener('scroll', sync, { passive: true });
+    sync();
+  }
+
   dialog.addEventListener('click', (event) => {
     if (event.target.closest('[data-close-details]')) dialog.close();
+    const nav = event.target.closest('[data-shots]');
+    if (nav) {
+      const list = nav.parentElement.querySelector('.shots');
+      list.scrollBy({ left: Number(nav.dataset.shots) * list.clientWidth });
+    }
     const shot = event.target.closest('[data-lightbox]');
     if (shot && current) {
       const image = current.screenshots[Number(shot.dataset.lightbox)];

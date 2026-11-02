@@ -273,7 +273,27 @@ section.block { padding: var(--s-4) 0; }
 .spec-list dt { color: var(--muted); font-size: 0.88rem; }
 .spec-list dd { margin: 0; font-size: 0.92rem; }
 
-.shots { list-style: none; padding: 0; margin: 0; display: flex; gap: var(--s-1); flex-wrap: wrap; }
+/* Steam-style filmstrip: one row that slides sideways, snapping a tile to the left edge.
+   The scrollbar is hidden because the arrows and the drag/wheel gesture are the controls. */
+.shots-strip { position: relative; }
+.shots {
+  list-style: none; padding: 0; margin: 0; display: flex; gap: var(--s-1);
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none; border-radius: var(--r-sm);
+}
+.shots::-webkit-scrollbar { display: none; }
+.shots > li { flex: none; scroll-snap-align: start; }
+.shots-nav {
+  position: absolute; top: 50%; translate: 0 -50%; left: 6px; z-index: 1;
+  display: grid; place-items: center; width: 32px; height: 32px; padding: 0;
+  font-size: 1.5rem; line-height: 1; color: var(--text);
+  background: rgba(11, 13, 18, 0.72); border: 1px solid var(--line);
+  border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px);
+  transition: background 0.18s, border-color 0.18s, opacity 0.18s;
+}
+.shots-nav--next { left: auto; right: 6px; }
+.shots-nav:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+.shots-nav:disabled { opacity: 0.2; cursor: default; }
 .shots .shot { padding: 0; border: 1px solid var(--line); border-radius: var(--r-sm); background: none; cursor: pointer; }
 .shots img { width: 160px; aspect-ratio: 16 / 9; object-fit: cover; display: block; border-radius: var(--r-sm); }
 .lightbox img { max-width: 100%; height: auto; border-radius: var(--r-md); }
@@ -287,8 +307,8 @@ section.block { padding: var(--s-4) 0; }
   background-size: 300% 100%;
   animation: shimmer 1.8s ease-in-out infinite;
 }
-/* Stagger on a 5-cycle, as the card grid does: the shimmer reads across the tiles
-   and restarts each row instead of trailing further behind on every extra slot. */
+/* Stagger on a 5-cycle, as the card grid does: the wave reads across the tiles in view
+   and restarts, instead of trailing further behind on every extra slot down the strip. */
 .shots--empty li:nth-child(5n + 2) .shot-ph { animation-delay: 0.12s; }
 .shots--empty li:nth-child(5n + 3) .shot-ph { animation-delay: 0.24s; }
 .shots--empty li:nth-child(5n + 4) .shot-ph { animation-delay: 0.36s; }
@@ -349,5 +369,5 @@ section.block { padding: var(--s-4) 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
