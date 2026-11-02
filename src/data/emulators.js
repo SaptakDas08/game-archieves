@@ -93,9 +93,41 @@ function fillSlot(game, i) {
 
 /** The ten slots, in catalogue order — edit any of them in place. */
 export const emulatorGames = [
-  {}, // 1
-  {}, // 2
-  {}, // 3
+  // TEST DATA — three sample slots so the page is not empty. Delete them when real games go in.
+  {
+    title: 'Test Emulator Entry 1',
+    slug: 'test-emulator-1',
+    platformType: 'homebrew',
+    system: 'NES',
+    genre: 'Test data',
+    shortDescription: 'Sample homebrew entry used to check the layout. Not a real game.',
+    developer: 'Test data',
+    price: 'Free',
+    lastVerified: '2026-11-02',
+  }, // 1
+  {
+    title: 'Test Emulator Entry 2',
+    slug: 'test-emulator-2',
+    platformType: 'official-release',
+    system: 'Game Boy Advance',
+    genre: 'Test data',
+    shortDescription: 'Sample official re-release entry, to check the entry-type filter. Not a real game.',
+    developer: 'Test data',
+    publisher: 'Test data',
+    price: '$9.99',
+    lastVerified: '2026-11-02',
+  }, // 2
+  {
+    title: 'Test Emulator Entry 3',
+    slug: 'test-emulator-3',
+    platformType: 'emulator-app',
+    system: 'Multi-system',
+    genre: 'Test data',
+    shortDescription: 'Sample emulator-application entry. Not a real application.',
+    developer: 'Test data',
+    price: 'Free (open-source)',
+    lastVerified: '2026-11-02',
+  }, // 3
   {}, // 4
   {}, // 5
   {}, // 6
