@@ -70,6 +70,19 @@ function gallery(game) {
   );
 }
 
+/** Files kept in this repo (public/files), offered next to — never instead of — the source link. */
+function attached(game) {
+  if (!game.attachments?.length) return '';
+  return `<p class="muted small">Attached files</p>
+    <ul class="files">${game.attachments
+      .map(
+        (file) => `<li><a class="btn btn-ghost" href="${esc(file.url)}" download>${esc(
+          file.label,
+        )}</a></li>`,
+      )
+      .join('')}</ul>`;
+}
+
 function originalSource(game) {
   if (!game.originalSourceUrl) {
     return `<p class="notice notice--warn">Source not verified &mdash; no store or download action is shown.</p>`;
@@ -148,6 +161,7 @@ export function detailsMarkup(game) {
         The link opens the rights holder's own download page, never a mirror.
         Last verified: ${esc(game.lastVerified || 'not verified')}
       </p>
+      ${attached(game)}
     </section>`;
 }
 

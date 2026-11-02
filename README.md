@@ -70,6 +70,22 @@ else, which in practice means an F-Droid or developer-hosted APK, a homebrew ROM
 author's itch.io or releases page, or a torrent a DRM-free publisher seeds itself. `npm test`
 rejects a handful of known tracker and APK re-upload hosts outright.
 
+### Attaching your own files
+
+To hand out a file yourself, drop it in `public/files/` and list it on the slot:
+
+```js
+attachments: [{ url: './files/your-game-patch.zip', label: 'Fan translation patch (.zip)' }],
+```
+
+Each one appears as a download button under the download section, below the source link.
+`npm test` requires the path to stay inside `public/files` and the label to be filled in; it
+cannot tell what the file contains. **These files are published publicly from this repo, so
+only attach something you have the right to hand out** — your own build, patch, config or
+notes. A game file you do not own (a ROM dump, somebody else's APK, an ISO, a crack, BIOS,
+firmware or keys) must never go in here; the rest of the site links the rights holder for
+exactly that reason.
+
 ### Adding more than 20 entries
 
 Add more objects to either list and the grid simply grows. The grids, counters, search, filters
@@ -120,6 +136,8 @@ These rules are enforced by convention and partly by `npm test`:
   tracker, an APK re-upload site or a ROM site is never a source, whatever the file is.
 - For emulator entries, the emulator and the game are separate: link the emulator's official
   site and state that players must supply game files themselves from lawful sources.
+- An `attachments` file is served from this repo, so it may only be a file you have the right
+  to distribute yourself. Never put a game file you do not own in `public/files/`.
 
 ## Project structure
 
@@ -127,6 +145,7 @@ These rules are enforced by convention and partly by `npm test`:
 index.html, android.html, emulators.html, gaming-computers.html
 vite.config.js            multi-page build, relative base path
 public/favicon.svg
+public/files/              files you attach to a slot, served as-is
 src/
   main.js                 home page
   android-page.js         Android entry

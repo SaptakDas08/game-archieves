@@ -13,6 +13,12 @@
 // publishes it there themselves (F-Droid, GitHub releases, their own site). Never an APK
 // re-upload site, a mirror or a cracked build.
 
+//
+// ATTACHMENTS: `attachments` publishes files out of this repo (drop them in public/files/)
+// as extra buttons under the download section. Only attach a file you have the right to
+// hand out yourself — your own build, patch, config or notes. Never a game file you do not
+// own: no ROM dumps, no APKs of someone else's app, no ISOs, cracks, BIOS, firmware or keys.
+
 const UNSPEC = 'Not specified by developer';
 
 /* TEMPLATE — copy the fields you need into any slot below. `id` and `status` are
@@ -44,6 +50,9 @@ const UNSPEC = 'Not specified by developer';
     storageRequirement: UNSPEC,
     price: 'Free',                      // as published, e.g. 'Free', '$4.99', '₹399'
     downloadFormat: 'APK',              // what the source hands you: 'APK', 'Play Store install'
+    attachments: [                      // your own files from public/files/, never someone else's game
+      // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },
+    ],
     originalSource: 'Google Play',      // the place the game comes from
     originalSourceUrl: 'https://…',     // where that place is
     requirementsSource: 'Where the requirements above came from.',
@@ -75,6 +84,7 @@ function fillSlot(game, i) {
     storageRequirement: UNSPEC,
     price: UNSPEC,
     downloadFormat: 'APK',
+    attachments: [],
     originalSource: UNSPEC,
     originalSourceUrl: null,
     requirementsSource: 'Not verified.',

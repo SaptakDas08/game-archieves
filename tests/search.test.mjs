@@ -39,11 +39,22 @@ for (const game of catalogue) {
       `${game.id}: a source URL needs the name of the place it points at`,
     );
   }
+  // Attachments are the one download served from this site rather than from somebody else's
+  // page, so the path must stay inside public/files (no mirror URL, no ../ escape) and say
+  // what the file is. Whether the file may lawfully be there is on whoever adds it.
+  for (const file of game.attachments) {
+    assert.ok(
+      /^\.\/files\/[\w.-]+$/.test(file.url),
+      `${game.id}: an attachment must be a file in public/files, not ${file.url}`,
+    );
+    assert.ok(file.label, `${game.id}: ${file.url} needs a label saying what the file is`);
+  }
   if (game.status === 'published') {
     assert.ok(game.title && game.slug, `${game.id}: a published entry needs a title and slug`);
     assert.ok(game.lastVerified, `${game.id}: a published entry needs a lastVerified date`);
   } else {
     assert.equal(game.originalSourceUrl, null, `${game.id}: placeholders must not link a source`);
+    assert.equal(game.attachments.length, 0, `${game.id}: placeholders must not attach files`);
   }
 }
 

@@ -13,6 +13,12 @@
 // holder publishes it themselves, the way some DRM-free releases do. Never a tracker, a
 // re-upload, a mirror or a crack.
 
+//
+// ATTACHMENTS: `attachments` publishes files out of this repo (drop them in public/files/)
+// as extra buttons under the download section. Only attach a file you have the right to
+// hand out yourself — your own build, patch, config or notes. Never a game file you do not
+// own: no ROM dumps, no APKs of someone else's app, no ISOs, cracks, BIOS, firmware or keys.
+
 const UNSPEC = 'Not specified by developer';
 
 /** Spread into a slot whose requirements the developer does not publish. */
@@ -59,6 +65,9 @@ const noRequirements = {
     recommendedRequirements: UNSPEC,
     price: '$19.99',                    // as published, e.g. 'Free', '$19.99', '₹399'
     downloadFormat: 'Torrent',          // what the source hands you: 'Torrent', 'Installer', 'Steam key'
+    attachments: [                      // your own files from public/files/, never someone else's game
+      // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },
+    ],
     originalSource: 'Steam',            // the place the game comes from
     originalSourceUrl: 'https://…',     // where that place is
     requirementsSource: 'Where the requirements above came from.',
@@ -88,6 +97,7 @@ function fillSlot(game, i) {
     ...noRequirements,
     price: UNSPEC,
     downloadFormat: 'Torrent',
+    attachments: [],
     originalSource: UNSPEC,
     originalSourceUrl: null,
     requirementsSource: 'Not verified.',

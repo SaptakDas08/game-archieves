@@ -13,6 +13,12 @@
 // mirror — and never BIOS, firmware or keys. The emulator and the game are separate
 // things: players supply anything else themselves, from lawful sources.
 
+//
+// ATTACHMENTS: `attachments` publishes files out of this repo (drop them in public/files/)
+// as extra buttons under the download section. Only attach a file you have the right to
+// hand out yourself — your own build, patch, config or notes. Never a game file you do not
+// own: no ROM dumps, no APKs of someone else's app, no ISOs, cracks, BIOS, firmware or keys.
+
 const UNSPEC = 'Not specified by developer';
 
 /* TEMPLATE — copy the fields you need into any slot below. `id` and `status` are
@@ -44,6 +50,9 @@ const UNSPEC = 'Not specified by developer';
     storageRequirement: UNSPEC,         // ROM file size, if the author publishes it
     price: 'Free',                      // as published, e.g. 'Free', 'Pay what you want'
     downloadFormat: 'ROM',              // what the source hands you: 'ROM', 'ROM (.nes)', 'Installer'
+    attachments: [                      // your own files from public/files/, never someone else's game
+      // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },
+    ],
     emulatorCompatibility: [],          // [{ name: 'Emulator', url: 'https://…' }]
     compatibilityNotes: '',
     originalSource: 'itch.io',          // the author's own page, or the official re-release
@@ -77,6 +86,7 @@ function fillSlot(game, i) {
     storageRequirement: UNSPEC,
     price: UNSPEC,
     downloadFormat: 'ROM',
+    attachments: [],
     emulatorCompatibility: [],
     compatibilityNotes: '',
     originalSource: UNSPEC,
