@@ -1,4 +1,5 @@
 node_modules/
 dist/
+GAME_ARCHIEVES_PROJECT_SPEC.md
 *.local
 .DS_Store
