@@ -9,7 +9,9 @@
 // RULES: never invent a value — use UNSPEC where the developer publishes none.
 // `originalSourceUrl` is the one link an entry shows, and it must point at the place the
 // game actually comes from: its official store page, the developer's own site, or the
-// project page of an open-source or homebrew title. Never a re-upload or a mirror.
+// project page of an open-source or homebrew title. A torrent only counts if the rights
+// holder publishes it themselves, the way some DRM-free releases do. Never a tracker, a
+// re-upload, a mirror or a crack.
 
 const UNSPEC = 'Not specified by developer';
 
@@ -56,6 +58,7 @@ const noRequirements = {
     minimumStorage: UNSPEC,
     recommendedRequirements: UNSPEC,
     price: '$19.99',                    // as published, e.g. 'Free', '$19.99', '₹399'
+    downloadFormat: 'Torrent',          // what the source hands you: 'Torrent', 'Installer', 'Steam key'
     originalSource: 'Steam',            // the place the game comes from
     originalSourceUrl: 'https://…',     // where that place is
     requirementsSource: 'Where the requirements above came from.',
@@ -84,6 +87,7 @@ function fillSlot(game, i) {
     supportedOS: [],
     ...noRequirements,
     price: UNSPEC,
+    downloadFormat: 'Torrent',
     originalSource: UNSPEC,
     originalSourceUrl: null,
     requirementsSource: 'Not verified.',

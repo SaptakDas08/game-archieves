@@ -18,7 +18,7 @@ function requirements(game) {
   }
   if (game.platformType) {
     return rows([
-      ['Original system / platform', game.androidMinimumVersion],
+      ['Original system / platform', game.system || game.androidMinimumVersion],
       ['Minimum RAM', game.minimumRam],
       ['Storage', game.storageRequirement],
     ]);
@@ -122,13 +122,16 @@ export function detailsMarkup(game) {
       <p class="muted small">Image source: ${esc(game.imageSource)}</p>
     </section>
 
-    <section><h3>Original source</h3>
+    <section><h3>${esc(game.downloadFormat ? `Download ${game.downloadFormat}` : 'Download')}</h3>
       ${rows([
         ['Price', game.price],
         ['Available from', game.originalSource],
       ])}
       ${originalSource(game)}
-      <p class="muted small">Last verified: ${esc(game.lastVerified || 'not verified')}</p>
+      <p class="muted small">
+        The link opens the rights holder's own download page, never a mirror.
+        Last verified: ${esc(game.lastVerified || 'not verified')}
+      </p>
     </section>`;
 }
 

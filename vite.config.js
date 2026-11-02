@@ -8,7 +8,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(import.meta.dirname, 'index.html'),
-        android: resolve(import.meta.dirname, 'android-emulators.html'),
+        android: resolve(import.meta.dirname, 'android.html'),
+        emulators: resolve(import.meta.dirname, 'emulators.html'),
         pc: resolve(import.meta.dirname, 'gaming-computers.html'),
       },
     },

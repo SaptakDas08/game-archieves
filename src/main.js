@@ -3,10 +3,11 @@ import './styles.css';
 import { renderChrome, esc } from './components/chrome.js';
 import { gameCard } from './components/game-card.js';
 import { mountDetails } from './components/game-details.js';
-import { androidGames } from './data/android-emulators.js';
+import { androidGames } from './data/android.js';
+import { emulatorGames } from './data/emulators.js';
 import { pcGames } from './data/gaming-computers.js';
 
-const all = [...androidGames, ...pcGames];
+const all = [...androidGames, ...emulatorGames, ...pcGames];
 renderChrome('home');
 mountDetails(all);
 
@@ -18,8 +19,8 @@ grid.innerHTML = featured.length
   : `<p class="muted">Featured entries appear here once catalogue records are published.</p>`;
 
 document.querySelectorAll('[data-count]').forEach((el) => {
-  const key = el.dataset.count;
-  el.textContent = `${(key === 'android' ? androidGames : pcGames).length} entries`;
+  const counts = { android: androidGames, emulator: emulatorGames, pc: pcGames };
+  el.textContent = `${counts[el.dataset.count].length} entries`;
 });
 
 document.querySelector('[data-year]').textContent = esc(new Date().getFullYear());

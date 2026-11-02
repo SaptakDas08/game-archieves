@@ -10,10 +10,11 @@ Built with **Vite + HTML + CSS + vanilla JavaScript**. No backend, no database, 
 | Page | File | Contents |
 | --- | --- | --- |
 | Home | `index.html` | Hero, category cards, featured games, entry explainer, about me |
-| Android & Emulators | `android-emulators.html` | 10 catalogue slots, platform-type filters |
+| Android | `android.html` | 10 catalogue slots, platform-type filters |
+| Emulators | `emulators.html` | 10 catalogue slots, entry-type filters |
 | Gaming Computers | `gaming-computers.html` | 10 catalogue slots, operating-system filters |
 
-Game details open in a hash-linkable dialog (`…/android-emulators.html#game=your-game`),
+Game details open in a hash-linkable dialog (`…/android.html#game=your-game`),
 so a detail view can be shared and refreshed without any server-side routing.
 
 ## Run it
@@ -28,9 +29,10 @@ npm test         # catalogue + search/filter self-check
 
 ## Editing the catalogue
 
-All content lives in two plain data files — no layout changes are needed to edit it:
+All content lives in three plain data files — no layout changes are needed to edit it:
 
-- `src/data/android-emulators.js` → `androidGames` (`android-01` … `android-10`)
+- `src/data/android.js` → `androidGames` (`android-01` … `android-10`)
+- `src/data/emulators.js` → `emulatorGames` (`emulator-01` … `emulator-10`)
 - `src/data/gaming-computers.js` → `pcGames` (`pc-01` … `pc-10`)
 
 ### Add a game
@@ -54,6 +56,19 @@ Save, and the game appears immediately — a slot goes live as soon as it has a 
 `npm test`: it names any published slot still missing its `lastVerified` date, so a half-filled
 entry cannot ship quietly. Order in the list is the order shown on the page, and a slot left as
 `{}` renders as a visually distinct "Coming soon" card, excluded from featured games.
+
+### The download section
+
+Each detail dialog ends in a download section named after the file that source hands you:
+**Download Torrent** on PC, **Download APK** on Android, **Download ROM** on Emulators. That
+name comes from one field, `downloadFormat`, which each data file defaults for its catalogue —
+change it per slot when it is wrong (`'Installer'`, `'Play Store install'`, `'ROM (.nes)'`).
+
+The section still shows the **same single link**, `originalSourceUrl`. Naming the file does not
+add a second place to get it: the link goes to the rights holder's own download and nowhere
+else, which in practice means an F-Droid or developer-hosted APK, a homebrew ROM from its
+author's itch.io or releases page, or a torrent a DRM-free publisher seeds itself. `npm test`
+rejects a handful of known tracker and APK re-upload hosts outright.
 
 ### Adding more than 20 entries
 
@@ -101,25 +116,28 @@ These rules are enforced by convention and partly by `npm test`:
   without an `originalSource` name to go with it.
 - Never invent a title, requirement, price, screenshot or URL. `price` is whatever that source
   publishes, copied as published.
+- A torrent, APK or ROM may only be listed when the rights holder publishes it themselves. A
+  tracker, an APK re-upload site or a ROM site is never a source, whatever the file is.
 - For emulator entries, the emulator and the game are separate: link the emulator's official
   site and state that players must supply game files themselves from lawful sources.
 
 ## Project structure
 
 ```text
-index.html, android-emulators.html, gaming-computers.html
+index.html, android.html, emulators.html, gaming-computers.html
 vite.config.js            multi-page build, relative base path
 public/favicon.svg
 src/
   main.js                 home page
-  android-page.js         Android & Emulators entry
+  android-page.js         Android entry
+  emulator-page.js        Emulators entry
   pc-page.js              Gaming Computers entry
   catalog.js              shared grid / search / filter / sort controller
   styles.css              design tokens + all styles
   components/
     chrome.js             nav, footer, "about download links" dialog, HTML escaping
     game-card.js          catalogue card + placeholder card
-    game-details.js       detail dialog, requirements, gallery, source links
+    game-details.js       detail dialog, requirements, gallery, download + source link
   utils/search.js         search, filter and sort logic
 tests/search.test.mjs     self-check (slot counts, link rules, filtering, sorting)
 ```

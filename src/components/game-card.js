@@ -12,9 +12,14 @@ export function statusBadge(game) {
 
 export function platformLabel(game) {
   if (game.platformType) {
-    return { android: 'Android', homebrew: 'Homebrew', 'emulator-compatible': 'Emulator-compatible' }[
-      game.platformType
-    ];
+    return (
+      {
+        android: 'Android',
+        homebrew: 'Homebrew',
+        'official-release': 'Official re-release',
+        'emulator-app': 'Emulator app',
+      }[game.platformType] || game.platformType
+    );
   }
   return (game.supportedOS || []).join(' · ') || 'Platform not specified';
 }

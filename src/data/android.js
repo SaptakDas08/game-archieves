@@ -1,4 +1,4 @@
-// Android & Emulators catalogue — 10 slots (android-01 … android-10).
+// Android catalogue — 10 slots (android-01 … android-10). Emulator entries live in emulators.js.
 //
 // ADD A GAME: every slot is editable. Pick one of the ten objects in the list at
 // the bottom and fill in the fields you have, copying names from the TEMPLATE.
@@ -9,7 +9,9 @@
 // RULES: never invent a value — use UNSPEC where the developer publishes none.
 // `originalSourceUrl` is the one link an entry shows, and it must point at the place the
 // game actually comes from: its official store page, the developer's own site, or the
-// project page of an open-source or homebrew title. Never a re-upload or a mirror.
+// project page of an open-source or homebrew title. An APK only counts if the developer
+// publishes it there themselves (F-Droid, GitHub releases, their own site). Never an APK
+// re-upload site, a mirror or a cracked build.
 
 const UNSPEC = 'Not specified by developer';
 
@@ -18,7 +20,7 @@ const UNSPEC = 'Not specified by developer';
   {
     title: 'Your Game',
     slug: 'your-game',                  // unique, URL-safe; used in the #game= link
-    platformType: 'android',            // 'android' | 'homebrew' | 'emulator-compatible'
+    platformType: 'android',            // 'android' | 'homebrew'
     genre: 'Genre',
     shortDescription: 'One or two factual lines.',
     coverImage: null,                   // './images/games/your-game.webp'
@@ -41,8 +43,7 @@ const UNSPEC = 'Not specified by developer';
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,
     price: 'Free',                      // as published, e.g. 'Free', '$4.99', '₹399'
-    emulatorCompatibility: [],          // [{ name: 'Emulator', url: 'https://…' }]
-    compatibilityNotes: '',
+    downloadFormat: 'APK',              // what the source hands you: 'APK', 'Play Store install'
     originalSource: 'Google Play',      // the place the game comes from
     originalSourceUrl: 'https://…',     // where that place is
     requirementsSource: 'Where the requirements above came from.',
@@ -73,8 +74,7 @@ function fillSlot(game, i) {
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,
     price: UNSPEC,
-    emulatorCompatibility: [],
-    compatibilityNotes: '',
+    downloadFormat: 'APK',
     originalSource: UNSPEC,
     originalSourceUrl: null,
     requirementsSource: 'Not verified.',
