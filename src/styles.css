@@ -82,8 +82,9 @@ a:hover { color: #fff; }
 /* ---------- navigation ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 10;
-  background: rgba(11, 13, 18, 0.86);
-  backdrop-filter: blur(12px);
+  /* Opaque, not translucent+blurred: a backdrop-filter on a sticky bar repaints
+     a blurred strip every scroll frame and visibly janks the page. */
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
 }
 .nav {
@@ -227,7 +228,7 @@ section.block { padding: var(--s-4) 0; }
   border-radius: var(--r-lg); padding: var(--s-3); max-width: 760px; width: min(94vw, 760px);
   max-height: 88vh; overflow: auto; box-shadow: var(--shadow);
 }
-.sheet::backdrop { background: rgba(5, 6, 10, 0.72); backdrop-filter: blur(3px); }
+.sheet::backdrop { background: rgba(5, 6, 10, 0.82); }
 .sheet section { padding-top: var(--s-2); border-top: 1px solid var(--line); margin-top: var(--s-2); }
 .sheet-close {
   float: right; background: var(--surface-2); color: var(--text); border: 1px solid var(--line);
