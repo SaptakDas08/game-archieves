@@ -172,5 +172,7 @@ Upload `dist/` to GitHub Pages, Netlify, Cloudflare Pages, or any static web ser
 
 All game names, artwork and trademarks belong to their respective owners. Game Archieves is an
 informational catalogue: the only files it serves are the ones you attach to an entry yourself.
-Replace the placeholder contact address
-in `src/components/chrome.js` with a real address for corrections and takedown requests.
+
+The footer carries no contact address, so corrections and takedown requests have nowhere to go but
+this repository. Add one to the footer note in `src/components/chrome.js` when you have an address
+you are happy to publish.
