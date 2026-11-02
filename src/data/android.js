@@ -44,6 +44,7 @@ const UNSPEC = 'Not specified by developer';
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,
     price: 'Free',                      // as published, e.g. 'Free', '$4.99', '₹399'
+    location: UNSPEC,                   // where it comes from, e.g. 'Google Play', 'Developer site'
     downloadFormat: 'APK',              // what the source hands you: 'APK', 'Play Store install'
     attachments: [                      // your own files from public/files/, never someone else's game
       // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },
@@ -76,6 +77,7 @@ function fillSlot(game, i) {
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,
     price: UNSPEC,
+    location: UNSPEC,
     downloadFormat: 'APK',
     attachments: [],
     requirementsSource: 'Not verified.',

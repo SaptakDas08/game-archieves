@@ -12,7 +12,7 @@ Built with **Vite + HTML + CSS + vanilla JavaScript**. No backend, no database, 
 | Home | `index.html` | Hero, category cards, featured games, entry explainer, about me |
 | Android | `android.html` | 10 catalogue slots, platform-type filters |
 | Emulators | `emulators.html` | 10 catalogue slots, entry-type filters |
-| Gaming Computers | `gaming-computers.html` | 10 catalogue slots, operating-system filters |
+| Personal Computer | `gaming-computers.html` | 10 catalogue slots, operating-system filters |
 
 Game details open in a hash-linkable dialog (`…/android.html#game=your-game`),
 so a detail view can be shared and refreshed without any server-side routing.
@@ -49,7 +49,8 @@ in place:
    `'Not specified by developer'` (the `UNSPEC` constant) anywhere the developer does not
    publish a value — never guess.
 5. Set `price` to whatever the game's publisher asks (`'Free'`, `'$19.99'`, `'₹399'`), copied
-   as published.
+   as published, and `location` to where it comes from (`'Steam'`, `'Google Play'`). Both show
+   in the download section, price first.
 6. Set `requirementsSource`, `imageSource` and `lastVerified` (`YYYY-MM-DD`).
 
 Save, and the game appears immediately — a slot goes live as soon as it has a `title`. Run
@@ -64,7 +65,8 @@ Each detail dialog ends in a download section named after the file that source h
 name comes from one field, `downloadFormat`, which each data file defaults for its catalogue —
 change it per slot when it is wrong (`'Installer'`, `'Play Store install'`, `'ROM (.nes)'`).
 
-Under that heading the section shows the files attached to the slot, then its price. Those
+Under that heading the section shows the files attached to the slot, then its price and the
+location it comes from. Those
 attached files are the only download an entry offers — there is no link out to a store or to
 anybody else's page. A slot with nothing attached says so plainly.
 
@@ -141,7 +143,7 @@ src/
   main.js                 home page
   android-page.js         Android entry
   emulator-page.js        Emulators entry
-  pc-page.js              Gaming Computers entry
+  pc-page.js              Personal Computer entry
   catalog.js              shared grid / search / filter / sort controller
   styles.css              design tokens + all styles
   components/

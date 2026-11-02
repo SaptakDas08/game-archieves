@@ -10,7 +10,7 @@ const PAGES = [
   { href: 'index.html', key: 'home', label: 'Home' },
   { href: 'android.html', key: 'android', label: 'Android' },
   { href: 'emulators.html', key: 'emulator', label: 'Emulators' },
-  { href: 'gaming-computers.html', key: 'pc', label: 'Gaming Computers' },
+  { href: 'gaming-computers.html', key: 'pc', label: 'Personal Computer' },
 ];
 
 export function renderChrome(activeKey) {

@@ -11,7 +11,7 @@ const catalogue = [...androidGames, ...emulatorGames, ...pcGames];
 
 assert.equal(androidGames.length, 10, 'Android must have 10 slots');
 assert.equal(emulatorGames.length, 10, 'Emulators must have 10 slots');
-assert.equal(pcGames.length, 10, 'Gaming Computers must have 10 slots');
+assert.equal(pcGames.length, 10, 'Personal Computer must have 10 slots');
 assert.equal(new Set(catalogue.map((g) => g.slug)).size, 30, 'slugs unique');
 assert.equal(new Set(catalogue.map((g) => g.id)).size, 30, 'ids unique');
 

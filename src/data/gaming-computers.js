@@ -1,4 +1,4 @@
-// Gaming Computers catalogue — 10 slots (pc-01 … pc-10).
+// Personal Computer catalogue — 10 slots (pc-01 … pc-10).
 //
 // ADD A GAME: every slot is editable. Pick one of the ten objects in the list at
 // the bottom and fill in the fields you have, copying names from the TEMPLATE.
@@ -59,6 +59,7 @@ const noRequirements = {
     minimumStorage: UNSPEC,
     recommendedRequirements: UNSPEC,
     price: '$19.99',                    // as published, e.g. 'Free', '$19.99', '₹399'
+    location: UNSPEC,                   // where it comes from, e.g. 'Steam', 'GOG', 'Developer site'
     downloadFormat: 'Torrent',          // what the source hands you: 'Torrent', 'Installer', 'Steam key'
     attachments: [                      // your own files from public/files/, never someone else's game
       // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },
@@ -89,6 +90,7 @@ function fillSlot(game, i) {
     supportedOS: [],
     ...noRequirements,
     price: UNSPEC,
+    location: UNSPEC,
     downloadFormat: 'Torrent',
     attachments: [],
     requirementsSource: 'Not verified.',

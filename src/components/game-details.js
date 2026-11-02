@@ -144,7 +144,7 @@ export function detailsMarkup(game) {
 
     <section><h3>${esc(game.downloadFormat ? `Download ${game.downloadFormat}` : 'Download')}</h3>
       ${attached(game)}
-      ${rows([['Price', game.price]])}
+      ${rows([['Price', game.price], ['Location', game.location]])}
     </section>`;
 }
 

@@ -46,6 +46,7 @@ const UNSPEC = 'Not specified by developer';
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,         // ROM file size, if the author publishes it
     price: 'Free',                      // as published, e.g. 'Free', 'Pay what you want'
+    location: UNSPEC,                   // where it comes from, e.g. "Author's own page"
     downloadFormat: 'ROM',              // what the source hands you: 'ROM', 'ROM (.nes)', 'Installer'
     attachments: [                      // your own files from public/files/, never someone else's game
       // { url: './files/your-game-patch.zip', label: 'What the file is (.zip)' },
@@ -80,6 +81,7 @@ function fillSlot(game, i) {
     minimumRam: UNSPEC,
     storageRequirement: UNSPEC,
     price: UNSPEC,
+    location: UNSPEC,
     downloadFormat: 'ROM',
     attachments: [],
     emulatorCompatibility: [],
