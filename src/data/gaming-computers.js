@@ -105,42 +105,9 @@ function fillSlot(game, i) {
 
 /** The ten slots, in catalogue order — edit any of them in place. */
 export const pcGames = [
-  // TEST DATA — three sample slots so the page is not empty. Delete them when real games go in.
-  {
-    title: 'Test PC Entry 1',
-    slug: 'test-pc-1',
-    genre: 'Test data',
-    shortDescription: 'Sample Windows entry used to check the layout. Not a real game.',
-    developer: 'Test data',
-    publisher: 'Test data',
-    supportedOS: ['Windows'],
-    price: '$19.99',
-    location: 'https://example.com/store/test-pc-1',
-    lastVerified: '2026-11-02',
-  }, // 1
-  {
-    title: 'Test PC Entry 2',
-    slug: 'test-pc-2',
-    genre: 'Test data',
-    shortDescription: 'Sample cross-platform entry, to check the operating-system filter. Not a real game.',
-    developer: 'Test data',
-    publisher: 'Test data',
-    supportedOS: ['Windows', 'Linux'],
-    price: 'Free',
-    location: 'https://example.com/store/test-pc-2',
-    lastVerified: '2026-11-02',
-  }, // 2
-  {
-    title: 'Test PC Entry 3',
-    slug: 'test-pc-3',
-    genre: 'Test data',
-    shortDescription: 'Sample entry on all three systems. Not a real game.',
-    developer: 'Test data',
-    supportedOS: ['Windows', 'Linux', 'macOS'],
-    price: 'Free (open-source)',
-    location: 'https://example.com/project/test-pc-3',
-    lastVerified: '2026-11-02',
-  }, // 3
+  {}, // 1
+  {}, // 2
+  {}, // 3
   {}, // 4
   {}, // 5
   {}, // 6

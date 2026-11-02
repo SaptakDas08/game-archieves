@@ -92,40 +92,9 @@ function fillSlot(game, i) {
 
 /** The ten slots, in catalogue order — edit any of them in place. */
 export const androidGames = [
-  // TEST DATA — three sample slots so the page is not empty. Delete them when real games go in.
-  {
-    title: 'Test Android Entry 1',
-    slug: 'test-android-1',
-    genre: 'Test data',
-    shortDescription: 'Sample entry used to check the layout. Not a real game.',
-    developer: 'Test data',
-    publisher: 'Test data',
-    price: 'Free',
-    location: 'https://example.com/store/test-android-1',
-    lastVerified: '2026-11-02',
-  }, // 1
-  {
-    title: 'Test Android Entry 2',
-    slug: 'test-android-2',
-    genre: 'Test data',
-    shortDescription: 'Sample paid entry, to check how a price reads. Not a real game.',
-    developer: 'Test data',
-    publisher: 'Test data',
-    price: '$4.99',
-    location: 'https://example.com/store/test-android-2',
-    lastVerified: '2026-11-02',
-  }, // 2
-  {
-    title: 'Test Android Entry 3',
-    slug: 'test-android-3',
-    platformType: 'homebrew',
-    genre: 'Test data',
-    shortDescription: 'Sample homebrew entry, to check the platform filter. Not a real game.',
-    developer: 'Test data',
-    price: 'Free (open-source)',
-    location: 'https://example.com/project/test-android-3',
-    lastVerified: '2026-11-02',
-  }, // 3
+  {}, // 1
+  {}, // 2
+  {}, // 3
   {}, // 4
   {}, // 5
   {}, // 6
