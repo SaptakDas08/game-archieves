@@ -188,6 +188,9 @@ section.block { padding: var(--s-4) 0; }
 .info-grid { display: grid; gap: var(--s-2); grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
 .info-item { padding: var(--s-2); border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); }
 
+/* Prose, not a grid — cap the measure so the lines stay readable on a wide screen. */
+.about { max-width: 64ch; display: grid; gap: var(--s-1); }
+
 /* ---------- catalogue ---------- */
 .page-head { padding: var(--s-4) 0 var(--s-2); }
 .toolbar {

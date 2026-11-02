@@ -9,11 +9,11 @@ Built with **Vite + HTML + CSS + vanilla JavaScript**. No backend, no database, 
 
 | Page | File | Contents |
 | --- | --- | --- |
-| Home | `index.html` | Hero, category cards, featured games, entry explainer |
+| Home | `index.html` | Hero, category cards, featured games, entry explainer, about me |
 | Android & Emulators | `android-emulators.html` | 10 catalogue slots, platform-type filters |
 | Gaming Computers | `gaming-computers.html` | 10 catalogue slots, operating-system filters |
 
-Game details open in a hash-linkable dialog (`…/android-emulators.html#game=micro-mages`),
+Game details open in a hash-linkable dialog (`…/android-emulators.html#game=your-game`),
 so a detail view can be shared and refreshed without any server-side routing.
 
 ## Run it
@@ -35,27 +35,35 @@ All content lives in two plain data files — no layout changes are needed to ed
 
 ### Add a game
 
-Both catalogues ship **empty** — 10 reserved slots each, no games. To add one:
+Both catalogues ship **empty** — 10 reserved slots each, no games. Every slot is editable
+in place:
 
-1. Open the data file and find the `TEMPLATE` comment block near the top.
-2. Copy everything between its braces into the `myGames` array below it.
-3. Fill `title`, `slug` (unique, URL-safe), `genre`, `shortDescription`, `developer`,
-   `publisher`, `priceModel`.
+1. Open the data file. At the bottom is a list of ten `{}` objects, one per slot.
+2. Pick any one and fill in the fields you have, copying their names from the `TEMPLATE`
+   comment just above. `id` and `status` are filled in for you.
+3. Anything you leave out keeps its placeholder value, so the smallest useful entry is a
+   `title`, a `slug` (unique, URL-safe) and a `shortDescription`.
 4. Fill the requirement fields **only** from an official source. Leave the literal string
    `'Not specified by developer'` (the `UNSPEC` constant) anywhere the developer does not
    publish a value — never guess.
 5. Add `sourceLinks` entries (see below) and a `licenceOrPermissionNote`.
 6. Set `requirementsSource`, `imageSource` and `lastVerified` (`YYYY-MM-DD`).
 
-Save, and the game appears immediately — the empty slots shrink to keep each catalogue at 10.
-Order in `myGames` is the order shown on the page. A remaining empty slot renders as a visually
-distinct "Coming soon" card and is excluded from featured games.
+Save, and the game appears immediately — a slot goes live as soon as it has a `title`. Run
+`npm test`: it names any published slot still missing its `lastVerified` date, so a half-filled
+entry cannot ship quietly. Order in the list is the order shown on the page, and a slot left as
+`{}` renders as a visually distinct "Coming soon" card, excluded from featured games.
 
 ### Adding more than 20 entries
 
-Add more than 10 objects to either `myGames` array; the padding stops once the array is full,
-so the grid simply grows. The grids, counters, search, filters and the home page counts are all
-derived from the array length, so nothing else needs changing.
+Add more objects to either list and the grid simply grows. The grids, counters, search, filters
+and the home page counts are all derived from the array length, so nothing else needs changing.
+
+### Edit the "About me" section
+
+It is static markup in `index.html`, in the `<section>` marked `aria-labelledby="about"`.
+The paragraph tagged `<!-- EDIT ME -->` is yours to replace; the rest describes how this
+catalogue sources its links.
 
 ### Images
 
