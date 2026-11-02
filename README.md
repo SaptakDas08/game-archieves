@@ -33,25 +33,29 @@ All content lives in two plain data files — no layout changes are needed to ed
 - `src/data/android-emulators.js` → `androidGames` (`android-01` … `android-10`)
 - `src/data/gaming-computers.js` → `pcGames` (`pc-01` … `pc-10`)
 
-### Replace a placeholder with a real game
+### Add a game
 
-Find the slot (e.g. `android-07`), then edit that one object:
+Both catalogues ship **empty** — 10 reserved slots each, no games. To add one:
 
-1. Set `status: 'published'`.
-2. Fill `title`, `slug` (unique, URL-safe), `genre`, `shortDescription`, `developer`,
+1. Open the data file and find the `TEMPLATE` comment block near the top.
+2. Copy everything between its braces into the `myGames` array below it.
+3. Fill `title`, `slug` (unique, URL-safe), `genre`, `shortDescription`, `developer`,
    `publisher`, `priceModel`.
-3. Fill the requirement fields **only** from an official source. Leave the literal string
-   `'Not specified by developer'` anywhere the developer does not publish a value — never guess.
-4. Add `sourceLinks` entries (see below) and a `licenceOrPermissionNote`.
-5. Set `requirementsSource`, `imageSource` and `lastVerified` (`YYYY-MM-DD`).
+4. Fill the requirement fields **only** from an official source. Leave the literal string
+   `'Not specified by developer'` (the `UNSPEC` constant) anywhere the developer does not
+   publish a value — never guess.
+5. Add `sourceLinks` entries (see below) and a `licenceOrPermissionNote`.
+6. Set `requirementsSource`, `imageSource` and `lastVerified` (`YYYY-MM-DD`).
 
-A slot with `status: 'placeholder'` renders as a visually distinct "Coming soon" card and is
-excluded from featured games.
+Save, and the game appears immediately — the empty slots shrink to keep each catalogue at 10.
+Order in `myGames` is the order shown on the page. A remaining empty slot renders as a visually
+distinct "Coming soon" card and is excluded from featured games.
 
 ### Adding more than 20 entries
 
-Append more objects to either array. The grids, counters, search, filters and the home page
-counts are all derived from the array length, so nothing else needs changing.
+Add more than 10 objects to either `myGames` array; the padding stops once the array is full,
+so the grid simply grows. The grids, counters, search, filters and the home page counts are all
+derived from the array length, so nothing else needs changing.
 
 ### Images
 
